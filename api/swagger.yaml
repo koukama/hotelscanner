@@ -169,24 +169,33 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/room'
+    example:
+      - id: 3
+        name: Suite 1
+        category:
+          name: Suite (S)
+          maxPeople: '3'
+          price: 1000$
+      - id: 4
+        name: Suite 2
+        category:
+          name: Suite (S)
+          maxPeople: '3'
+          price: 1000$
     title: Rooms
-
   newRoom:
     type: object
     title: newRoom
     properties:
       name:
         type: string
-        example: Chambre standard
+        example: Chambre standard 1
       category:
         $ref: '#/definitions/category'
       hotel:
         $ref: '#/definitions/hotel'
       photo:
         type: string
-        format: url
-        example: "https://t-ec.bstatic.com/images/hotel/max1280x900/143/143388450.jpg" 
-
   room:
     title: room
     allOf:
@@ -206,7 +215,7 @@ definitions:
         example: '3'
       price:
         type: string
-        example: "123E"
+        example: 1000$
     title: Category
   bookingConfirmation:
     type: object
@@ -217,6 +226,13 @@ definitions:
     title: Booking confirmation
   newBooking:
     type: object
+    required:
+      - firtName
+      - lastName
+      - email
+      - tel
+      - startDate
+      - endDate
     properties:
       firstName:
         type: string
@@ -230,6 +246,12 @@ definitions:
       tel:
         type: string
         example: '003311111121'
+      startDate:
+        type: string
+        example: '2019-04-21'
+      endDate:
+        type: string
+        example: '2019-04-29'
       roomID:
         type: string
         example: '323'
@@ -240,9 +262,7 @@ definitions:
       - type: object
         properties:
           id:
-            type: integer
-            format: int32
-            minimum: 1
+            type: string
         required:
           - id
     title: Hotel
@@ -252,10 +272,7 @@ definitions:
     properties:
       name:
         type: string
-        example: "Hôtel Paris Lafayette"
       address:
         type: string
-        example: "23 Rue des Messageries, 75010 Paris"
       tel:
         type: string
-        example: "+33 1 48 00 00 11"
