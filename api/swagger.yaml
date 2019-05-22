@@ -1,0 +1,272 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: '[ETNA] Booking API'
+  description: |
+    API de Booking pour le projet de l'ETNA
+
+    # Actions possible via cette API
+    - Chercher une disponibilité d'une chambre (GET /availability)
+    - Faire une reservation (POST /booking)
+  contact:
+    name: AMZANI
+host: 'www.example.com'
+produces:
+  - application/json
+schemes:
+  - http
+securityDefinitions:
+  API Key:
+    type: apiKey
+    in: header
+    name: api-key
+security:
+  - API Key: []
+paths:
+  /availability:
+    x-summary: List of available rooms
+    get:
+      summary: Retrieve List of available rooms
+      parameters:
+        - name: arrivalDate
+          in: query
+          description: When this booking should start
+          required: true
+          type: string
+          x-example: '2019-04-21'
+        - name: departureDate
+          in: query
+          description: When this booking should end
+          required: true
+          type: string
+          x-example: '2019-04-28'
+        - name: totalAdults
+          in: query
+          description: For how many peoples
+          required: true
+          type: string
+          x-example: '4'
+        - name: totalKids
+          in: query
+          description: How many kids above 3yr
+          required: true
+          type: string
+          x-example: '4'
+      responses:
+        '200':
+          description: The list of available rooms
+          schema:
+            $ref: '#/definitions/rooms'
+      tags:
+        - User
+  /booking:
+    post:
+      consumes:
+        - application/json
+      parameters:
+        - name: BookingInput
+          in: body
+          description: Booking Input inforations
+          required: true
+          schema:
+            $ref: '#/definitions/newBooking'
+      responses:
+        '200':
+          description: confirmation email with the number of the room reserved
+          schema:
+            $ref: '#/definitions/bookingConfirmation'
+      summary: Create a reservation
+      tags:
+        - User
+    x-summary: create a reservation for a room
+  /hotels:
+    get:
+      summary: Get List of hotels
+      tags:
+        - admin
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/hotel'
+    post:
+      summary: Add a new hotel
+      tags:
+        - admin
+      parameters:
+        - name: newHotel
+          in: body
+          schema:
+            $ref: '#/definitions/newHotel'
+      consumes:
+        - application/json
+      responses:
+        '201':
+          description: OK
+          schema:
+            type: object
+            properties: {}
+        
+
+    put:
+      summary: Change hotel informations
+      consumes:
+        - application/json
+      tags:
+        - admin
+      responses:
+        '204':
+          description: No Content
+    delete:
+      summary: Delete a hotel
+      tags:
+        - admin
+      responses:
+        '202':
+          description: Accepted
+  /rooms:
+    get:
+      summary: Get list of rooms for one hotels
+      tags:
+        - User
+      responses:
+        '200':
+          description: Room List
+          schema:
+            items:
+              $ref: '#/definitions/room'
+    post:
+      summary: Add a room
+      tags:
+        - admin
+      parameters:
+        - name: newRoom
+          in: body
+          schema:
+            $ref: '#/definitions/newRoom'
+      responses:
+        '201':
+          description: Created
+    put:
+      summary: Change room informations
+      tags:
+        - admin
+      responses:
+        '204':
+          description: No Content
+    delete:
+      summary: Delete a room
+      tags:
+        - admin
+      responses:
+        '202':
+          description: Accepted
+        
+definitions:
+  rooms:
+    type: array
+    items:
+      $ref: '#/definitions/room'
+    example:
+      - id: 3
+        name: Suite 1
+        category:
+          name: Suite (S)
+          maxPeople: '3'
+          price: 1000$
+      - id: 4
+        name: Suite 2
+        category:
+          name: Suite (S)
+          maxPeople: '3'
+          price: 1000$
+    title: Rooms
+  newRoom:
+    type: object
+    title: newRoom
+    properties:
+      name:
+        type: string
+        example: Chambre standard
+      category:
+        $ref: '#/definitions/category'
+      hotel:
+        $ref: '#/definitions/hotel'
+      photo:
+        type: string
+        format: url
+        example: "https://t-ec.bstatic.com/images/hotel/max1280x900/143/143388450.jpg" 
+  room:
+    title: room
+    allOf:
+      - $ref: '#/definitions/newRoom'
+      - type: object
+        properties:
+          id:
+            type: string
+  category:
+    type: object
+    properties:
+      name:
+        type: string
+        example: Suite (S)
+      maxPeople:
+        type: string
+        example: '3'
+      price:
+        type: string
+        example: "123E"
+    title: Category
+  bookingConfirmation:
+    type: object
+    properties:
+      id:
+        type: string
+        example: '3'
+    title: Booking confirmation
+  newBooking:
+    type: object
+    properties:
+      firstName:
+        type: string
+        example: Asmae
+      lastName:
+        type: string
+        example: Lahmar
+      email:
+        type: string
+        example: asmae@gmail.com
+      tel:
+        type: string
+        example: '003311111121'
+      roomID:
+        type: string
+        example: '323'
+    title: Booking Input
+  hotel:
+    allOf:
+      - $ref: '#/definitions/newHotel'
+      - type: object
+        properties:
+          id:
+            type: integer
+            format: int32
+            minimum: 1
+        required:
+          - id
+    title: Hotel
+  newHotel:
+    title: NewHotel
+    type: object
+    properties:
+      name:
+        type: string
+        example: "Hôtel Paris Lafayette"
+      address:
+        type: string
+        example: "23 Rue des Messageries, 75010 Paris"
+      tel:
+        type: string
+        example: "+33 1 48 00 00 11"

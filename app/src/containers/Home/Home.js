@@ -4,7 +4,6 @@ import HomeImage from './HomeImage.jpeg'
 
 import './Home.css'
 import { SearchBar } from '../../components/SearchBar/SearchBar';
-import HotelList from '../HotelList/HotelList'
 
 
 export class Home extends Component {

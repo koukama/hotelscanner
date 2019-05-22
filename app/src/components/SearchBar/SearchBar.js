@@ -19,7 +19,7 @@ export class SearchBar extends Component {
     render() {
         let redirect = null
         if (this.state.redirect) {
-            redirect = <Redirect to='/availibility' />
+            redirect = <Redirect to='/availability' />
         }
         return (
             <div className="SearchForm">

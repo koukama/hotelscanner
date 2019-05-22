@@ -20,8 +20,8 @@ function App() {
     return (
         <div className="App">
             <Layout>
-                <NavBar />
                 <Router>
+                    <NavBar />
                     <Route path="/" exact component={Home} />
                     <Route path="/availability" exact component={HotelList} />
                 </Router>
