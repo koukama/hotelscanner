@@ -1,0 +1,281 @@
+---
+swagger: "2.0"
+info:
+  description: |
+    API de Booking pour le projet de l'ETNA
+
+    # Actions possible via cette API
+    - Chercher une disponibilité d'une chambre (GET /availability)
+    - Faire une reservation (POST /booking)
+  version: 1.0.0
+  title: '[ETNA] Booking API'
+  contact:
+    name: AMZANI
+host: www.example.com
+schemes:
+- http
+produces:
+- application/json
+security:
+- API Key: []
+paths:
+  /availability:
+    get:
+      tags:
+      - User
+      summary: Retrieve List of available rooms
+      parameters:
+      - name: arrivalDate
+        in: query
+        description: When this booking should start
+        required: true
+        type: string
+        x-example: 2019-04-21
+      - name: departureDate
+        in: query
+        description: When this booking should end
+        required: true
+        type: string
+        x-example: 2019-04-28
+      - name: totalAdults
+        in: query
+        description: For how many peoples
+        required: true
+        type: string
+        x-example: "4"
+      - name: totalKids
+        in: query
+        description: How many kids above 3yr
+        required: true
+        type: string
+        x-example: "4"
+      responses:
+        200:
+          description: The list of available rooms
+          schema:
+            $ref: '#/definitions/rooms'
+    x-summary: List of available rooms
+  /booking:
+    post:
+      tags:
+      - User
+      summary: Create a reservation
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: BookingInput
+        description: Booking Input inforations
+        required: true
+        schema:
+          $ref: '#/definitions/newBooking'
+      responses:
+        200:
+          description: confirmation email with the number of the room reserved
+          schema:
+            $ref: '#/definitions/bookingConfirmation'
+    x-summary: create a reservation for a room
+  /hotels:
+    get:
+      tags:
+      - admin
+      summary: Get List of hotels
+      parameters: []
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/hotel'
+    post:
+      tags:
+      - admin
+      summary: Add a new hotel
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: newHotel
+        required: false
+        schema:
+          $ref: '#/definitions/newHotel'
+      responses:
+        201:
+          description: OK
+          schema:
+            type: object
+    put:
+      tags:
+      - admin
+      summary: Change hotel informations
+      consumes:
+      - application/json
+      parameters: []
+      responses:
+        204:
+          description: No Content
+    delete:
+      tags:
+      - admin
+      summary: Delete a hotel
+      parameters: []
+      responses:
+        202:
+          description: Accepted
+  /rooms:
+    get:
+      tags:
+      - User
+      summary: Get list of rooms for one hotels
+      parameters: []
+      responses:
+        200:
+          description: Room List
+          schema: {}
+    post:
+      tags:
+      - admin
+      summary: Add a room
+      parameters:
+      - in: body
+        name: newRoom
+        required: false
+        schema:
+          $ref: '#/definitions/newRoom'
+      responses:
+        201:
+          description: Created
+    put:
+      tags:
+      - admin
+      summary: Change room informations
+      parameters: []
+      responses:
+        204:
+          description: No Content
+    delete:
+      tags:
+      - admin
+      summary: Delete a room
+      parameters: []
+      responses:
+        202:
+          description: Accepted
+securityDefinitions:
+  API Key:
+    type: apiKey
+    name: api-key
+    in: header
+definitions:
+  rooms:
+    title: Rooms
+    type: array
+    items:
+      $ref: '#/definitions/room'
+    example:
+    - id: 3
+      name: Suite 1
+      category:
+        name: Suite (S)
+        maxPeople: "3"
+        price: 1000$
+    - id: 4
+      name: Suite 2
+      category:
+        name: Suite (S)
+        maxPeople: "3"
+        price: 1000$
+  newRoom:
+    type: object
+    properties:
+      name:
+        type: string
+        example: Chambre standard 1
+      category:
+        $ref: '#/definitions/category'
+      hotel:
+        $ref: '#/definitions/hotel'
+      photo:
+        type: string
+    title: newRoom
+  room:
+    title: room
+    allOf:
+    - $ref: '#/definitions/newRoom'
+    - type: object
+      properties:
+        id:
+          type: string
+  category:
+    type: object
+    properties:
+      name:
+        type: string
+        example: Suite (S)
+      maxPeople:
+        type: string
+        example: "3"
+      price:
+        type: string
+        example: 1000$
+    title: Category
+  bookingConfirmation:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "3"
+    title: Booking confirmation
+  newBooking:
+    type: object
+    required:
+    - firstName
+    - lastName
+    - email
+    - endDate
+    - startDate
+    - tel
+    properties:
+      firstName:
+        type: string
+        example: Asmae
+      lastName:
+        type: string
+        example: Lahmar
+      email:
+        type: string
+        example: asmae@gmail.com
+      tel:
+        type: string
+        example: "003311111121"
+      startDate:
+        type: string
+        example: 2019-04-21
+      endDate:
+        type: string
+        example: 2019-04-29
+      roomID:
+        type: string
+        example: "323"
+    title: Booking Input
+  hotel:
+    title: Hotel
+    allOf:
+    - $ref: '#/definitions/newHotel'
+    - type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+  newHotel:
+    type: object
+    properties:
+      name:
+        type: string
+      address:
+        type: string
+      tel:
+        type: string
+    title: NewHotel
