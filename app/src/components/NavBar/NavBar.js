@@ -32,8 +32,8 @@ class NavBar extends Component {
                 exact
                 activeClassName="NavBar__Selected"
                 className="nav-link"
-                to="/">
-                 <i className="fas fa-user-circle"></i> My Profil
+                to="/admin">
+                 My Profil
               </NavLink>
             </li>
             {/* <li className="nav-item">

@@ -169,20 +169,8 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/room'
-    example:
-      - id: 3
-        name: Suite 1
-        category:
-          name: Suite (S)
-          maxPeople: '3'
-          price: 1000$
-      - id: 4
-        name: Suite 2
-        category:
-          name: Suite (S)
-          maxPeople: '3'
-          price: 1000$
     title: Rooms
+
   newRoom:
     type: object
     title: newRoom
@@ -198,6 +186,7 @@ definitions:
         type: string
         format: url
         example: "https://t-ec.bstatic.com/images/hotel/max1280x900/143/143388450.jpg" 
+
   room:
     title: room
     allOf:

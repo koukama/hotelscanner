@@ -1,0 +1,33 @@
+.confirmInput{
+    width: 583px;
+    height: 36px;
+    border: 1px solid #2ebdd39e;
+    margin: 6px;
+    padding: 10px;
+}
+
+.confirmButton{
+    width: 220px;
+    height: 36px;
+    border: 3px solid #80d6e3;
+    background-color: #80d6e3;
+    margin: 1px;
+    margin-bottom: 1px;
+    color: #6c757d;
+}
+
+.confirmForm{
+    margin-top: 35px;
+}
+
+.confirmTitle{
+    color: #6c757d;
+    font-size: 39px;
+}
+
+
+.check{
+    float:left;
+    margin-left: 425px;
+
+}

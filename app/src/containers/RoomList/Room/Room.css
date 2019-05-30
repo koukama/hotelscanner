@@ -1,0 +1,25 @@
+.HotelImage{
+    width: 54%;
+    margin: 10px;
+}
+
+.Hotel{
+    border-bottom: 1px solid #2dbdd36b;
+    margin: 10px; 
+}
+
+.icon{
+    color: #2dbdd3;
+    margin-right: 9px;
+}
+
+
+.BookingButton{
+    width: 220px;
+    height: 36px;
+    border: 3px solid #80d6e3;
+    background-color: #80d6e3;
+    margin: 1px;
+    margin-bottom: 1px;
+    color: #6c757d;
+}

@@ -1,0 +1,18 @@
+.tdButton{
+    width: 400px;
+}
+
+.TableHead{
+    background: #2dbdd366;
+    color: #6c757d;
+}
+
+.addButton{
+    width: 220px;
+    height: 36px;
+    border: 1px solid #80d6e3;
+    background-color: #e9ecef;
+    margin: 1px;
+    margin-bottom: 1px;
+    color: #6c757d;
+}

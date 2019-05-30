@@ -8,15 +8,12 @@ import { SearchBar } from '../../components/SearchBar/SearchBar';
 
 export class Home extends Component {
 
-    searchHandler = (e) => {
-        console.log('it\'s work ' )
-      }
 
     render() {
         return (
             <div className="Home">
                 <img className="homeImage" src={HomeImage} />
-                <SearchBar handler={this.searchHandler}/>
+                <SearchBar />
             </div>
         )
     }

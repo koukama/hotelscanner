@@ -1,0 +1,15 @@
+.listButton{
+    border: 1px solid #80d6e3;
+    background-color: #80d6e3;
+    margin: 1px;
+    margin-bottom: 1px;
+    color: #6c757d;
+}
+
+.removeButton{
+    border: 1px solid #f92121;
+    background-color: #f92121;
+    margin: 1px;
+    margin-bottom: 1px;
+    color: #f8f9fa;
+}
