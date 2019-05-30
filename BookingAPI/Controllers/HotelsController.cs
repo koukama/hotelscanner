@@ -8,7 +8,8 @@ using System;
 
 namespace BookingAPI.Controllers
 {
-     [Route("api/[controller]")]
+    [Route("api/[controller]")]
+    
     public class HotelsController : Controller
     {
         private BookingDbContext _context;
@@ -19,7 +20,6 @@ namespace BookingAPI.Controllers
         }
 
         [HttpGet]
-        [EnableCors("Default")]
         public IActionResult GetHotels()
         {
             return Ok(_context.Hotels.Include(e => e.Rooms));

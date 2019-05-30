@@ -66,8 +66,9 @@ namespace BookingAPI
             }
 
             
-            app.UseMvc();
             app.UseCorsMiddleware();
+            app.UseMvc();
+            
 
             bc.CreateSeedData();
             app.Run(async (context) =>
