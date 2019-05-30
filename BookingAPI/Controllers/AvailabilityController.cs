@@ -26,17 +26,20 @@ FROM Rooms as A
 INNER JOIN categories as B
 ON B.id = A.CategoryefId
 WHERE B.MaxPeople >= {0} 
-AND A.HotelRefId = {1}
 AND (A.Id NOT IN (SELECT RoomRefBookingId
     FROM Bookings
     WHERE 
-        (Bookings.StartDate <= '{2}' AND Bookings.EndDate >= '{3}') OR
-        (Bookings.StartDate <= '{2}' AND Bookings.EndDate >= '{2}' AND Bookings.StartDate < '{3}') OR
-        (Bookings.StartDate > '{2}' AND Bookings.StartDate <= '{3}' AND Bookings.StartDate < '{3}')
-    AND A.id is NOT NULL))", maxPeople, bookingInput.hotelID, bookingInput.ArrivalDate, bookingInput.DepartureDate);
+        (Bookings.StartDate <= '{1}' AND Bookings.EndDate >= '{2}') OR
+        (Bookings.StartDate <= '{1}' AND Bookings.EndDate >= '{1}' AND Bookings.StartDate < '{2}') OR
+        (Bookings.StartDate > '{1}' AND Bookings.StartDate <= '{2}' AND Bookings.StartDate < '{2}')
+    AND A.id is NOT NULL))", maxPeople, bookingInput.ArrivalDate, bookingInput.DepartureDate);
             var availableRooms = _context.Rooms
+                .Include(e => e.Category)
+                .Include(e => e.Hotel)
                 .FromSql(sql)
                 .ToList();
+
+            
             Console.WriteLine(sql);
             return Ok(availableRooms);
         }

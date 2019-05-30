@@ -49,7 +49,7 @@ namespace BookingAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = "Server=localhost;Database=hotelscanner;User Id=sa;Password=Azerty@33";
+            var connectionString = "Server=localhost;Database=hotelscanner2;User Id=sa;Password=Azerty@33";
             services.AddDbContext<BookingDbContext>(o => o.UseSqlServer(connectionString));
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
