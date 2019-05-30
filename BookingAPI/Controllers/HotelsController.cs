@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 using BookingAPI.Services;
 using BookingAPI.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,8 @@ namespace BookingAPI.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        [EnableCors("Default")]
         public IActionResult GetHotels()
         {
             return Ok(_context.Hotels.Include(e => e.Rooms));
