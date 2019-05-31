@@ -4,7 +4,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
-
+import './App.css'
 
 import Layout from './containers/Layout/Layout'
 import Home from './containers/Home/Home'
@@ -15,13 +15,11 @@ import LoginAdmin from './containers/LoginAdmin/LoginAdmin'
 import Login from './containers/Login/Login'
 import { HotelList } from './containers/HotelList/HotelList'
 import Logout from './containers/Logout/Logout'
-
-import './App.css'
+import BookingList from './containers/BookingList/BookingList';
 
 
 
 library.add(faMapMarkerAlt)
-
 
 
 
@@ -37,6 +35,7 @@ function App() {
                     <Route path="/admin" exact component={Login} />
                     <Route path="/logout" exact component={Logout} />
                     <Route path="/admin/hotels" exact component={HotelList} />
+                    <Route path="/admin/bookings" exact component={BookingList} />
                 </Router>
             </Layout>
         </div>
