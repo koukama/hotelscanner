@@ -28,11 +28,6 @@ export class ConfirmForm extends Component {
                         </div>
                         <div className="row">
                             <div className="col-sm">
-                                <input placeholder="confirmation adresse email" type="text" className="confirmInput"/>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-sm">
                                 <input placeholder="Telephone" id="tel" type="text" className="confirmInput"/>
                             </div>
                         </div>

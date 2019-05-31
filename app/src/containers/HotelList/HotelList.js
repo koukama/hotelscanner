@@ -30,6 +30,23 @@ export class HotelList extends Component {
         this.setState({redirect: true})
     }
 
+    removeHotelHandler = (id) => {
+        axios.delete("/hotels/" + id)
+            .then((response) => {
+                axios.get("/hotels")
+                    .then((response) => {
+                    console.log(response)
+                    this.setState({ data : response.data})
+                    })
+                    .catch((error) => {
+                    console.log(error);
+                    }) 
+                })
+            .catch(function (error) {
+                console.log(error)
+            })
+    }
+
     render() {
         let redirect = null
         if (this.state.redirect) {        
@@ -55,6 +72,8 @@ export class HotelList extends Component {
                     <Hotel className="Hotel" 
                         name= {hotel.name}
                         address = {hotel.address}
+                        hotelID = {hotel.id}
+                        removeHotelHandler = {this.removeHotelHandler}
                     />
                 )
             }

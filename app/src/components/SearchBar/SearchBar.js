@@ -25,6 +25,8 @@ export class SearchBar extends Component {
                 console.log('response')
                 console.log(response.data)
                 this.setState({ data : response.data, redirect: true})
+                localStorage.setItem("startDate", arrivalDate)
+                localStorage.setItem("endDate", departureDate)
             })
             .catch((error) => {
                  // handle error
