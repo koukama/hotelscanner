@@ -37,7 +37,7 @@ namespace BookingAPI.Controllers
             }
             catch (DbUpdateException e) {
                 Console.WriteLine("DB Execption: {0}", e.Message);
-                return BadRequest("Adding Hotel error (the booking maybe already exists)");
+                return BadRequest("Adding Hotel error");
             }
            
         }
