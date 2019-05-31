@@ -8,12 +8,15 @@ using System;
 
 namespace BookingAPI.Controllers
 {
+    [Route("api/[controller]")]
     public class LoginController : Controller
     {
         [HttpPost]
         public ActionResult PostLogin(Login login)
         {
-            if (login.UserName == "admin" & login.Password == "azerty") {
+            Console.Write(login.UserName);
+            Console.Write(login.Password);
+            if (string.Compare(login.UserName, "admin") == 0 & string.Compare(login.Password,("admin")) == 0) {
                 return Ok("Success");
             }
             else {
