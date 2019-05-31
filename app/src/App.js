@@ -11,12 +11,11 @@ import Home from './containers/Home/Home'
 import NavBar from './components/NavBar/NavBar'
 import RoomList from './containers/RoomList/RoomList'
 import Register from './containers/Register/Register'
-import LoginAdmin from './containers/LoginAdmin/LoginAdmin'
 import Login from './containers/Login/Login'
 import { HotelList } from './containers/HotelList/HotelList'
 import Logout from './containers/Logout/Logout'
 import BookingList from './containers/BookingList/BookingList';
-
+import { AddHotel } from './containers/AddHotel/AddHotel'
 
 
 library.add(faMapMarkerAlt)
@@ -36,6 +35,7 @@ function App() {
                     <Route path="/logout" exact component={Logout} />
                     <Route path="/admin/hotels" exact component={HotelList} />
                     <Route path="/admin/bookings" exact component={BookingList} />
+                    <Route path="/admin/addhotel" exact component={AddHotel} />
                 </Router>
             </Layout>
         </div>
