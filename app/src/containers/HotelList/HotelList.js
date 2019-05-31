@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import Hotel from './Hotel/Hotel'
 import './HotelList.css'
+import { Redirect } from 'react-router-dom'
 
 
 export class HotelList extends Component {
@@ -24,10 +25,19 @@ export class HotelList extends Component {
                 console.log(error);
             })
     }
+    
+    RedirectToAddHotel = () => {
+        this.setState({redirect: true})
+    }
 
     render() {
+        let redirect = null
+        if (this.state.redirect) {        
+            redirect = <Redirect to = '/admin/addhotel'/>
+        }
         return (
             <div className="HotelList">
+            {redirect}
             <Table responsive>
                 <thead className="TableHead">
                 <tr>
@@ -35,7 +45,7 @@ export class HotelList extends Component {
                     <td>Adresse</td>
                     <td>chambres</td>
                     <td className="tdButton">
-                        <button type="button" className="addButton" >Ajouter un hotel</button>
+                        <button type="button" className="addButton" onClick={this.RedirectToAddHotel}>Ajouter un hotel</button>
                     </td>
                 </tr>
                 </thead>

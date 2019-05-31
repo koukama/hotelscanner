@@ -11,10 +11,10 @@ import Home from './containers/Home/Home'
 import NavBar from './components/NavBar/NavBar'
 import RoomList from './containers/RoomList/RoomList'
 import Register from './containers/Register/Register'
-import LoginAdmin from './containers/LoginAdmin/LoginAdmin'
 import Login from './containers/Login/Login'
 import { HotelList } from './containers/HotelList/HotelList'
 import Logout from './containers/Logout/Logout'
+import { AddHotel } from './containers/AddHotel/AddHotel'
 
 import './App.css'
 
@@ -37,6 +37,7 @@ function App() {
                     <Route path="/admin" exact component={Login} />
                     <Route path="/logout" exact component={Logout} />
                     <Route path="/admin/hotels" exact component={HotelList} />
+                    <Route path="/admin/addhotel" exact component={AddHotel} />
                 </Router>
             </Layout>
         </div>
