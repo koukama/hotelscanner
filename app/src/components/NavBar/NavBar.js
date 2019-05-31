@@ -33,18 +33,18 @@ class NavBar extends Component {
                 activeClassName="NavBar__Selected"
                 className="nav-link"
                 to="/admin">
-                 My Profil
+                 Login
               </NavLink>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <NavLink
                 exact
                 activeClassName="NavBar__Selected"
                 className="nav-link"
-                to="/wishlist">
-                My Wishlist
+                to="/logout">
+                 Logout
               </NavLink>
-            </li> */}
+            </li>
           </ul>
         </div>
       </nav>

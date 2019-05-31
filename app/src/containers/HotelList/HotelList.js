@@ -8,9 +8,24 @@ import './HotelList.css'
 
 export class HotelList extends Component {
 
+    state = {
+        data: []
+    }
+
+    componentDidMount() {
+        axios.get("/hotels")
+            .then((response) => {
+                console.log('response')
+                console.log(response.data)
+                this.setState({ data : response.data})
+            })
+            .catch((error) => {
+                    // handle error
+                console.log(error);
+            })
+    }
+
     render() {
-        console.log('HotelList')
-        console.log(this.props.location.state.data)
         return (
             <div className="HotelList">
             <Table responsive>
@@ -26,7 +41,7 @@ export class HotelList extends Component {
                 </thead>
             </Table>
             {
-                this.props.location.state.data.map((hotel) =>
+                this.state.data.map((hotel) =>
                     <Hotel className="Hotel" 
                         name= {hotel.name}
                         address = {hotel.address}

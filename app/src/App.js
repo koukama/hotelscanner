@@ -12,10 +12,12 @@ import NavBar from './components/NavBar/NavBar'
 import RoomList from './containers/RoomList/RoomList'
 import Register from './containers/Register/Register'
 import LoginAdmin from './containers/LoginAdmin/LoginAdmin'
+import Login from './containers/Login/Login'
 import { HotelList } from './containers/HotelList/HotelList'
-
+import Logout from './containers/Logout/Logout'
 
 import './App.css'
+
 
 
 library.add(faMapMarkerAlt)
@@ -32,7 +34,8 @@ function App() {
                     <Route path="/" exact component={Home} />
                     <Route path="/availability" exact component={RoomList} />
                     <Route path="/register" exact component={Register} />
-                    <Route path="/admin" exact component={LoginAdmin} />
+                    <Route path="/admin" exact component={Login} />
+                    <Route path="/logout" exact component={Logout} />
                     <Route path="/admin/hotels" exact component={HotelList} />
                 </Router>
             </Layout>
