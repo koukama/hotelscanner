@@ -5,6 +5,8 @@
 - [dotnet](https://paper.dropbox.com/ep/redirect/external-link?url=https%3A%2F%2Fdotnet.microsoft.com%2Fdownload&hmac=sdRoIazI9Mn%2BDbovUouFtguOMxjn92iIUwAW0SlkV84%3D) 
 - Installer Azure data studio  https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017 pour gérer la base de donnée mssql
 - Docker
+- Create React APP
+- NPM et Yarn
 
 
 ## Les étapes
@@ -42,10 +44,6 @@ Avec .NET AspCore et Entity Framework
 
 Avec [Create-React-App](https://github.com/facebook/create-react-app)
 
-### Etape.5 : Implémentation de Login
-
-
-
 
 ## Démarrage de l'application
 
@@ -60,7 +58,9 @@ Avec [Create-React-App](https://github.com/facebook/create-react-app)
 
 
 ```
-    make app-run
+    cd app
+    yarn install
+    yarn start
 ```
  
 

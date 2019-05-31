@@ -4,9 +4,8 @@ db-run:
 
 .PHONY: api-run
 api-run:
-	cd BookingAPI
-	dotnet run
+	dotnet run --project=BookingAPI
 
 .PHONY: api-mook
 api-mook:
-	prism mock api/swagger.yaml
+	prism mock BookingAPI/swagger.yaml
